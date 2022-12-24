@@ -1,6 +1,6 @@
 ---
 title: Branding & Design
-layout: homepage
+layout: homepage.liquid
 ---
 
 # Graphic designer currently working & living in Bali.
