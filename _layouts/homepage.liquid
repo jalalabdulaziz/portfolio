@@ -1,0 +1,37 @@
+---
+layout: default-alternative.liquid
+---
+
+<div class="row site-big-text">
+  <div class="col-xs-10 col-sm-10 col-lg-6">{{ content }}</div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-lg-12">
+    <div class="separator"></div>
+  </div>
+</div>
+<div class="row site-section-title">
+  <div class="col-xs-12 col-sm-12 col-lg-12">
+    <div class="project-list-header">
+      <h2>Selected Works</h2>
+      <a class="project-list-header-link" href="/works">View All</a>
+    </div>
+  </div>
+</div>
+<div class="thumb-item-container row">
+  {% for post in collections.posts %}
+  {% if post.data.featured %}
+  <div class="project-thumb-item {% if post.data.status == 'in-progress' %} in-progress {% endif %} col-xs-12 col-sm-6 col-lg-6">
+    {% if post.data.status != 'in-progress' %}
+    <a class="project-links" href="{{ post.url | url }}">
+      {% include "project-thumbnail.liquid" %}
+    </a>
+    {% elsif post.data.status == 'in-progress' %}
+    <span class="project-links">
+      {% include "project-thumbnail.liquid" %}
+    </span>
+    {% endif %}
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>

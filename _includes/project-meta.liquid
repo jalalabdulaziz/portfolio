@@ -1,0 +1,22 @@
+<div class="project-meta">
+  <span class="project-meta-title">Scope:<br>{{ scope | join: ', ' }}</span><br>
+  <span class="project-meta-title">Year completed:<br>{{ year }}</span><br>
+  {% if creative-director %}
+  <span class="project-meta-title">Creative
+    Director:<br>{{ creative-director }}</span><br>
+  {% endif %}
+  {% if collaborator %}
+  <span class="project-meta-collaborator">Collaborator:<br>{{ collaborator | join: ', ' }}</span>
+  {% endif %}
+  {% if credit %}
+  <span class="project-meta-credit">Credit:<br>
+    <ul>
+      <li>{{ credit | join: '</li><li> ' }}
+      </li>
+    </ul>
+  </span><br>
+  {% endif %}
+  {% if agency %}
+  <span class="project-meta-title">Agency:<br>{{ agency }}</span>
+  {% endif %}
+</div>

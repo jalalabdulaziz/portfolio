@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="{{ site.language }}">
+{% include head.liquid %} {% include screensaver.liquid %}
+
+<body id="body">
+  {% include header.liquid %}
+  <div class="container-fluid" id="barba-wrapper" data-barba="wrapper">
+    <div data-barba="container" class="container-fluid-inner barba-container page-inner">
+      <div class="row">{{ content }}</div>
+    </div>
+  </div>
+  {% include footer.liquid %}
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="{{ site.language }}">
+{% include "head.liquid" %} {% include "screensaver.liquid" %}
+
+<body id="body">
+  {% include "header.liquid" %}
+  <div class="container-fluid page-content" id="barba-wrapper" data-barba="wrapper">
+    <div data-barba="container" class="container-fluid-inner barba-container page-inner">
+      <div class="row site-big-text">
+        <div class="col-xs-10 col-sm-10 col-lg-7">{{ content }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-lg-12">
+          <div class="separator"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-lg-6">
+          <h2>Capabilities</h2>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-lg-6">
+          <ul>
+            <li>Brand Identity Design</li>
+            <li>Creative Direction</li>
+            <li>Packaging Design</li>
+            <li>Motion Design</li>
+            <li>Web Design &amp; Development</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-lg-12">
+          <div class="separator"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-lg-6">
+          <h2>Get in touch</h2>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-lg-6">
+          <p>For business inquiries, collaborations or questions please get in touch:</p>
+          <br />
+          <a href="mailto:jalalabdulaziz@gmail.com" target="_blank">Email</a><br />
+          <a href="https://www.behance.net/jalalabdulaziz" target="_blank">Behance</a><br />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-lg-12">
+          <div class="separator"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include "footer.liquid" %}
+</body>
+
+</html>

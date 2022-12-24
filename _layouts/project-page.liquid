@@ -1,0 +1,74 @@
+---
+layout: project-page-template.liquid
+---
+
+{% for file in collections.gallery %}
+{% if file contains imagedir %}
+{% unless file contains 'thumb' or file contains 'autoplay' or file contains 'poster' or file contains '.mp4' or file contains '.gif' or file contains 'half.jpg' or file contains 'large.jpg' %}
+{% if file contains '.jpg' %}
+<div class="row">
+  <div class="{% if file contains 'left' %} col-xs-6 col-sm-6 col-lg-6 {% elsif file contains 'right' %} col-xs-6 col-xs-offset-6 col-sm-6 col-sm-offset-6 {% else %} col-xs-12 col-sm-12 {% endif %}">
+    <div class="project-img">
+      <picture>
+        <source data-srcset="/{{ file | url }} 1x, /{{ file | url }} 2x" media="(max-width: 480px)" />
+        <source data-srcset="/{{ file | url }} 1x, /{{ file | url | replace: ".jpg", "_large.jpg" }} 2x" media="(min-width: 512px)" />
+        <img src="{% include "project-placeholder.liquid" %}" data-src="{% include "project-placeholder.liquid" %}"
+          class="lazyload" alt="{{ title | capitalize }} project file" />
+      </picture>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endunless %}
+
+{% unless file contains 'thumb' %} {% unless file contains 'autoplay' %}
+{% if file contains '.mp4' %}
+<div class="row">
+  <div class="col-xs-12 col-sm-12">
+    <div class="project-img">
+      <a class="video-popup" href="/{{ file | url }}" data-barba-prevent="all">
+        <div class="project-img">
+          <img class="lazyload" src="/{{ file | replace: ".mp4", "_poster.jpg" }}">
+          <div class="video-play-button">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 70 70"
+              style="enable-background: new 0 0 70 70" xml:space="preserve">
+              <path class="st0" d="M35,0C15.701,0,0,15.701,0,35c0,19.299,15.701,35,35,35c19.299,0,35-15.701,35-35C70,15.701,54.299,0,35,0z
+             M35,69.183C16.151,69.183,0.817,53.849,0.817,35S16.151,0.817,35,0.817S69.183,16.152,69.183,35S53.848,69.183,35,69.183z
+             M29.657,23.812L46.556,35L29.657,46.188V23.812z" />
+            </svg>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endunless %}
+{% endunless %}
+
+{% if file contains '.mp4' and file contains 'autoplay' %}
+<div class="row">
+  <div class="col-xs-12 col-sm-12">
+    <div class="project-img">
+      <video
+        class="lazyload {% if file contains 'left' %} left {% endif %} {% if file contains 'right' %} right {% endif %} {% if file contains 'half' %} half {% endif %}"
+        disableRemotePlayback playsinline autoplay muted loop>
+        <source src="/{{ file | url }}" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% endif %}
+{% endfor %}
+<div class="project-info row">
+  <div class="col-xs-12 col-sm-6 col-left">{% include "project-meta.liquid" %}</div>
+  <div class="col-xs-12 col-sm-6 col-right"">
+    <div class=" project-title">
+    <h1>{{ title }}</h1>
+  </div>
+  <div class="project-description">{{ content }}</div>
+</div>
+</div>
