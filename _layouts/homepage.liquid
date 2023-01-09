@@ -7,21 +7,21 @@ layout: default-alternative.liquid
 </div>
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-lg-12">
-    <div class="separator"></div>
+    <div class="separator animation--line"></div>
   </div>
 </div>
 <div class="row site-section-title">
   <div class="col-xs-12 col-sm-12 col-lg-12">
     <div class="project-list-header">
-      <h2>Selected Works</h2>
-      <a class="project-list-header-link" href="/works">View All</a>
+      <h2 class="animation--fadein">Selected Works</h2>
+      <a class="project-list-header-link animation--fadein" href="/works">View All</a>
     </div>
   </div>
 </div>
 <div class="thumb-item-container row">
   {% for post in collections.posts %}
   {% if post.data.featured %}
-  <div class="project-thumb-item {% if post.data.status == 'in-progress' %} in-progress {% endif %} col-xs-12 col-sm-6 col-lg-6">
+  <div class="project-thumb-item {% if post.data.status == 'in-progress' %} in-progress {% endif %} animation--fadein col-xs-12 col-sm-6 col-lg-6">
     {% if post.data.status != 'in-progress' %}
     <a class="project-links" href="{{ post.url | url }}">
       {% include "project-thumbnail.liquid" %}

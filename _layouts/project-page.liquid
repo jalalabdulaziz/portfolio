@@ -11,7 +11,7 @@ layout: project-page-template.liquid
     <div class="project-img">
       <picture>
         <source data-srcset="/{{ file | url }} 1x, /{{ file | url }} 2x" media="(max-width: 480px)" />
-        <source data-srcset="/{{ file | url }} 1x, /{{ file | url | replace: ".jpg", "_large.jpg" }} 2x" media="(min-width: 512px)" />
+        <source data-srcset="/{{ file | url }} 1x, /{{ file | url | replace: ".jpg", ".jpg" }} 2x" media="(min-width: 512px)" />
         <img src="{% include "project-placeholder.liquid" %}" data-src="{% include "project-placeholder.liquid" %}"
           class="lazyload" alt="{{ title | capitalize }} project file" />
       </picture>

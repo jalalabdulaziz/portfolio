@@ -1,7 +1,7 @@
 <div class="project-thumb-container">
   <picture>
     <source data-srcset="/img/{{ post.data.imagedir }}/{{ post.data.imagedir }}_thumb.jpg 1x, /img/{{ post.data.imagedir }}/{{ post.data.imagedir }}_thumb.jpg 2x" media="(max-width: 480px)" />
-    <source data-srcset="/img/{{ post.data.imagedir }}/{{ post.data.imagedir }}_thumb.jpg 1x, /img/{{ post.data.imagedir }}/{{ post.data.imagedir }}_thumb_large.jpg 2x" media="(min-width: 512px)" />
+    <source data-srcset="/img/{{ post.data.imagedir }}/{{ post.data.imagedir }}_thumb.jpg 1x, /img/{{ post.data.imagedir }}/{{ post.data.imagedir }}_thumb.jpg 2x" media="(min-width: 512px)" />
     <img src="{% include "project-placeholder.liquid" %}" data-src="{% include "project-placeholder.liquid" %}" class="lazyload" alt="{{ post.data.title | capitalize }} project thumbnail" />
   </picture>
   <div class="project-thumb-overlay"></div>

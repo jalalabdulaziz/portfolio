@@ -1,26 +1,60 @@
 // Screensaver
 function screenSaver() {
   var s_saver;
+
   $("body").mousemove(function () {
     clearTimeout(s_saver);
 
     s_saver = setTimeout(function () {
-      $(".screensaver").fadeIn(900);
+      $(".screensaver").fadeIn(600);
     }, 50000);
 
-    $(".screensaver").fadeOut(500);
+    $(".screensaver").fadeOut(300);
   });
+
   $("body").on("wheel", function (e) {
     clearTimeout(s_saver);
 
     s_saver = setTimeout(function () {
-      $(".screensaver").fadeIn(900);
+      $(".screensaver").fadeIn(600);
     }, 30000);
 
-    $(".screensaver").fadeOut(500);
+    $(".screensaver").fadeOut(300);
   });
 }
 
+// Text Animation
+function revealAnimation() {
+  const target = document.querySelector('h1');
+
+  var tl = anime.timeline({
+    easing: "easeInOutExpo",
+    duration: 750
+  });
+
+  Splitting({
+    target: target,
+    by: 'chars'
+  });
+
+  tl
+    .add({
+      targets: ".char",
+      translateY: ["1em", 0],
+      opacity: [0, 1],
+      delay: anime.stagger(10)
+    }).add({
+      targets: ".animation--line",
+      scaleX: [0, 1],
+      delay: anime.stagger(80)
+    }, '-=600').add({
+      targets: ".animation--fadein",
+      opacity: [0, 1],
+      translateY: ["10", 0],
+      easing: "easeInOutExpo",
+      delay: anime.stagger(80)
+    }, '-=600');
+}
 
 // Time
 function updateClock() {
@@ -88,8 +122,7 @@ function videoPopup() {
     preloader: true,
     fixedContentPos: false,
     iframe: {
-      markup:
-        '<div class="mfp-iframe-scaler">' +
+      markup: '<div class="mfp-iframe-scaler">' +
         '<div class="mfp-close"></div>' +
         '<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>' +
         "</div>",
@@ -128,6 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   videoPopup();
   activeLink();
+  revealAnimation();
 });
 
 document.addEventListener("lazyloaded", function (e) {
@@ -142,35 +176,34 @@ document.addEventListener("lazyloaded", function (e) {
 
 // Barba
 barba.init({
-  transitions: [
-    {
-      name: "page-transition",
-      leave: (data) => {
-        return new Promise((resolve) => {
-          srollToTop();
-          anime({
-            targets: data.current.container,
-            opacity: 0,
-            easing: "easeInOutExpo",
-            duration: 500,
-            complete: () => {
-              resolve();
-            },
-          });
-        });
-      },
-      enter: (data) => {
+  transitions: [{
+    name: "page-transition",
+    leave: (data) => {
+      return new Promise((resolve) => {
+        srollToTop();
         anime({
-          targets: data.next.container,
+          targets: data.current.container,
           opacity: 0,
-          translateY: 80,
-          direction: "reverse",
+          translateY: 40,
           easing: "easeInOutExpo",
-          duration: 800,
+          duration: 400,
+          complete: () => {
+            resolve();
+          },
         });
-      },
+      });
     },
-  ],
+    enter: (data) => {
+      anime({
+        targets: data.next.container,
+        opacity: 0,
+        translateY: 80,
+        direction: "reverse",
+        easing: "easeInOutExpo",
+        duration: 800,
+      });
+    },
+  }, ],
 });
 
 barba.hooks.after((data) => {
@@ -186,7 +219,7 @@ barba.hooks.after((data) => {
 
   videoPopup();
   activeLink();
-
+  revealAnimation();
 
   if (typeof ga === "function") {
     ga("send", "pageview", location.pathname);
