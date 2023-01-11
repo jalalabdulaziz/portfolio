@@ -9,7 +9,6 @@ year: 2019
 scope: 
     - Creative Direction
     - Brand Identity
-    - Website
 agency:
 collaborator: 
 credit:

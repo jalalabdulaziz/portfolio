@@ -7,6 +7,7 @@ categories: works
 date: 2018-05-01
 year: 2018
 scope: 
+    - Creative Direction
     - Brand Identity
     - Digital
 agency: Léon
