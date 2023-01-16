@@ -7,7 +7,7 @@ categories: works
 date: 2018-03-02
 year: 2019
 scope: 
-    - Brand Identity
+    - Branding
 agency: Brave Factor
 collaborator: 
 credit: 

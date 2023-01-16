@@ -13,14 +13,25 @@ layout: default-alternative.liquid
 <div class="row site-section-title">
   <div class="col-xs-12 col-sm-12 col-lg-12">
     <div class="project-list-header">
-      <h2 class="animation--fadein">All Case Studies</h2>
+      <h2 class="animation--fadein">Filter Works</h2>
+      <div class="project-filter">
+        <label class="project-list-header-link animation--fadein selected">
+          <input class="project-filter-button" type="radio" value="all" />All</label>
+        <label class="project-list-header-link animation--fadein">
+          <input class="project-filter-button" type="radio" value="branding" />Branding</label>
+        <label class="project-list-header-link animation--fadein">
+          <input class="project-filter-button" type="radio" value="digital" />Digital</label>
+        <label class="project-list-header-link animation--fadein">
+          <input class="project-filter-button" type="radio" value="packaging" />Packaging</label>
+      </div>
     </div>
   </div>
 </div>
-<div class="thumb-item-container row">
+<div class="thumb-item-container project-all-item-container row">
   {% for post in collections.posts %}
   <div
-    class="project-thumb-item {% if post.data.status == 'in-progress' %} in-progress {% endif %} animation--fadein col-xs-12 col-sm-6 col-lg-6">
+    class="project-thumb-item project-all-item {% if post.data.status == 'in-progress' %} in-progress {% endif %} animation--fadein col-xs-12 col-sm-6 col-lg-6 {{ post.data.scope | join: ' ' | downcase }}"
+    data-scope="{{ post.data.scope | join: ' ' | downcase }}">
     {% if post.data.status != 'in-progress' %}
     <a class="project-links" href="{{ post.url | url }}">
       {% include "project-thumbnail.liquid" %}
@@ -32,4 +43,5 @@ layout: default-alternative.liquid
     {% endif %}
   </div>
   {% endfor %}
+  <div class="col-xs-1 col-sm-1 col-lg-1 my-sizer-element"></div>
 </div>

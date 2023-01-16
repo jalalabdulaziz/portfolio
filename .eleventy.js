@@ -3,10 +3,9 @@ const projectImages = fg.sync(['**/img/**/*', '!**/_site/img/**/*']);
 module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("img");
-  eleventyConfig.addCollection('gallery', function(collection) {
+  eleventyConfig.addCollection('gallery', function (collection) {
     return projectImages;
   });
-
   return {
     dir: {
       input: "./",

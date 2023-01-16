@@ -7,8 +7,8 @@ categories: works
 date: 2018-05-01
 year: 2019
 scope: 
-    - Creative Direction
-    - Brand Identity
+    - Branding
+    - Digital
 agency:
 collaborator: 
 credit:
@@ -18,6 +18,9 @@ creative-director:
 status:
 featured: featured
 thumbnail-type: image
+tag: 
+    - creativedirection
+    - brandidentity
 ---
 
 Brand identity for an eco resort located in West Sumbawa. More details soon.

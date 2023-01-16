@@ -995,6 +995,11 @@ ol li {
   list-style: none;
 }
 
+input[type="radio"], input[type="radio"]:checked{
+  visibility: hidden;
+  display: none;
+}
+
 
 
 /**
@@ -1429,6 +1434,29 @@ a:hover {
 
 .site-big-text-padding {
   padding-right: 20vw;
+}
+
+
+/**
+ * Project Filter
+ */
+.project-list-header-link.selected {
+  background: var(--black);
+  color: var(--white);
+  transition: all .3s ease;
+}
+
+.hide {
+  display: none;
+}
+
+.project-list-header-link {
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.project-list-header-link:not(:last-child) {
+  margin-right: 2px;
 }
 
 

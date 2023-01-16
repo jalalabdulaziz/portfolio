@@ -7,7 +7,7 @@ function screenSaver() {
 
     s_saver = setTimeout(function () {
       $(".screensaver").fadeIn(600);
-    }, 50000);
+    }, 40000);
 
     $(".screensaver").fadeOut(300);
   });
@@ -17,11 +17,62 @@ function screenSaver() {
 
     s_saver = setTimeout(function () {
       $(".screensaver").fadeIn(600);
-    }, 30000);
+    }, 20000);
 
     $(".screensaver").fadeOut(300);
   });
 }
+
+// Project Filter
+function filterProject() {
+  $(".project-filter-button").on("click", function (e) {
+    var val = $(this).val();
+    var tl = anime.timeline({
+      easing: "easeInOutExpo",
+      duration: 400
+    });
+    if (val == "all") {
+      tl
+        .add({
+          targets: ".project-all-item",
+          opacity: [1, 0],
+          translateY: [0, 10],
+          delay: anime.stagger(100),
+          complete: function () {
+            $('.project-all-item').removeClass('hide');
+          }
+        }).add({
+          targets: ".project-all-item",
+          opacity: [0, 1],
+          translateY: [10, 0],
+          delay: anime.stagger(100)
+        });
+    } else {
+      tl
+        .add({
+          targets: ".project-all-item",
+          opacity: [1, 0],
+          translateY: [0, 10],
+          delay: anime.stagger(100),
+          complete: function () {
+            $('.project-all-item').removeClass('hide');
+            $('.project-all-item').filter(':not([data-scope*="' + val + '"])').addClass('hide');
+          }
+        }).add({
+          targets: ".project-all-item",
+          opacity: [0, 1],
+          translateY: [10, 0],
+          delay: anime.stagger(100)
+        });
+    }
+  });
+
+  $(".project-filter label").on("click", function (e) {
+    $('.project-filter label').removeClass('selected');
+    $(this).addClass('selected');
+  });
+}
+
 
 // Text Animation
 function revealAnimation() {
@@ -51,7 +102,6 @@ function revealAnimation() {
       targets: ".animation--fadein",
       opacity: [0, 1],
       translateY: ["10", 0],
-      easing: "easeInOutExpo",
       delay: anime.stagger(80)
     }, '-=600');
 }
@@ -162,6 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
   videoPopup();
   activeLink();
   revealAnimation();
+  filterProject();
 });
 
 document.addEventListener("lazyloaded", function (e) {
@@ -220,6 +271,7 @@ barba.hooks.after((data) => {
   videoPopup();
   activeLink();
   revealAnimation();
+  filterProject();
 
   if (typeof ga === "function") {
     ga("send", "pageview", location.pathname);
