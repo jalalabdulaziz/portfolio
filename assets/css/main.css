@@ -1272,6 +1272,11 @@ a:hover {
   color: var(--white);
 }
 
+.is-put-in-corner {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+}
 
 /**
  * Headroom

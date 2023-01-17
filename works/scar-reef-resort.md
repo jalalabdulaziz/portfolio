@@ -8,6 +8,7 @@ date: 2018-05-01
 year: 2019
 scope: 
     - Branding
+    - Creative Direction
     - Digital
 agency:
 collaborator: 
