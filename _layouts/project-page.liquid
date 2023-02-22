@@ -7,11 +7,13 @@ layout: project-page-template.liquid
 {% unless file contains 'thumb' or file contains 'autoplay' or file contains 'poster' or file contains '.mp4' or file contains '.gif' or file contains 'half.jpg' or file contains 'large.jpg' %}
 {% if file contains '.jpg' %}
 <div class="row">
-  <div class="{% if file contains 'left' %} col-xs-6 col-sm-6 col-lg-6 {% elsif file contains 'right' %} col-xs-6 col-xs-offset-6 col-sm-6 col-sm-offset-6 {% else %} col-xs-12 col-sm-12 {% endif %}">
+  <div
+    class="{% if file contains 'left' %} col-xs-6 col-sm-6 col-lg-6 {% elsif file contains 'right' %} col-xs-6 col-xs-offset-6 col-sm-6 col-sm-offset-6 {% else %} col-xs-12 col-sm-12 {% endif %}">
     <div class="project-img">
       <picture>
         <source data-srcset="/{{ file | url }} 1x, /{{ file | url }} 2x" media="(max-width: 480px)" />
-        <source data-srcset="/{{ file | url }} 1x, /{{ file | url | replace: ".jpg", ".jpg" }} 2x" media="(min-width: 512px)" />
+        <source data-srcset="/{{ file | url }} 1x, /{{ file | url | replace: ".jpg", ".jpg" }} 2x"
+          media="(min-width: 512px)" />
         <img src="{% include "project-placeholder.liquid" %}" data-src="{% include "project-placeholder.liquid" %}"
           class="lazyload" alt="{{ title | capitalize }} project file" />
       </picture>
@@ -64,11 +66,13 @@ layout: project-page-template.liquid
 {% endif %}
 {% endfor %}
 <div class="project-info row">
-  <div class="col-xs-12 col-sm-6 col-left">{% include "project-meta.liquid" %}</div>
-  <div class="col-xs-12 col-sm-6 col-right"">
+  <div class="col-xs-12 col-sm-6 col-left">
     <div class=" project-title">
-    <h1>{{ title }}</h1>
+      <h1>{{ title }}</h1>
+    </div>
   </div>
-  <div class="project-description">{{ content }}</div>
-</div>
+  <div class="col-xs-12 col-sm-6 col-right">
+    <div class="project-description">{{ content }}</div>
+    {% include "project-meta.liquid" %}
+  </div>
 </div>

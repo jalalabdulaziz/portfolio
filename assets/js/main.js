@@ -23,6 +23,28 @@ function screenSaver() {
   });
 }
 
+// Dark Mode
+function darkMode() {
+var toggle = document.getElementById("theme-toggle");
+
+var storedTheme = localStorage.getItem('theme') || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+if (storedTheme)
+    document.documentElement.setAttribute('data-theme', storedTheme)
+
+
+toggle.onclick = function() {
+    var currentTheme = document.documentElement.getAttribute("data-theme");
+    var targetTheme = "light";
+
+    if (currentTheme === "light") {
+        targetTheme = "dark";
+    }
+
+    document.documentElement.setAttribute('data-theme', targetTheme)
+    localStorage.setItem('theme', targetTheme);
+};
+}
+
 // Project Filter
 function filterProject() {
   $(".project-filter-button").on("click", function (e) {
@@ -76,7 +98,7 @@ function filterProject() {
 
 // Text Animation
 function revealAnimation() {
-  const target = document.querySelector('h1');
+  const target = document.querySelector('.site-big-text h1');
 
   var tl = anime.timeline({
     easing: "easeInOutExpo",
@@ -98,12 +120,12 @@ function revealAnimation() {
       targets: ".animation--line",
       scaleX: [0, 1],
       delay: anime.stagger(80)
-    }, '-=600').add({
+    }, '-=800').add({
       targets: ".animation--fadein",
       opacity: [0, 1],
       translateY: ["10", 0],
       delay: anime.stagger(80)
-    }, '-=600');
+    }, '-=800');
 }
 
 // Time
