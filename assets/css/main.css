@@ -783,7 +783,6 @@ html {
   --gray: #8d8d8d;
   --lightgray: #dadada;
   --white: #ffffff;
-  --red: #ff472e;
 
   --text-color: var(--black);
   --bg-color: var(--white);
@@ -938,6 +937,13 @@ input[type="radio"]:checked {
   --distance-percent: calc((var(--distance) / var(--char-center)));
 }
 
+/**
+ * SplitType
+ */
+.line {
+  overflow: hidden;
+}
+
 
 /**
  * Headings
@@ -1031,6 +1037,7 @@ a:hover {
 .site-nav-link,
 .site-title {
   position: relative;
+  display: inline-block;
 }
 
 .site-nav-link-right {
@@ -1056,9 +1063,10 @@ a:hover {
 
 .site-nav--active:before {
   content: "\2022";
-  display: inline-flex;
   position: absolute;
-  color: var(--red);
+  display: inline;
+  height: 1em;
+  color: var(--black);
 }
 
 .site-nav-link-item:hover:before {
@@ -1069,8 +1077,16 @@ a:hover {
   text-align: right;
 }
 
-.site-nav-link-right .close,
-.top-button, .toggle-button {
+.site-nav-link-right .close, .toggle-button {
+  cursor: pointer;
+  display: inline-flex;
+  border: 1px solid var(--black);
+  border-radius: 2em;
+  padding: .5em;
+  transition: all ease .3s;
+}
+
+.top-button {
   cursor: pointer;
   display: inline-flex;
   border: 1px solid var(--black);
@@ -1083,8 +1099,12 @@ a:hover {
   margin-left: 5px;
 }
 
-.site-nav-link-right .close svg,
-.top-button svg, .toggle-button svg {
+.site-nav-link-right .close svg, .toggle-button svg {
+  height: 14px;
+  stroke-width: 3px;
+}
+
+.top-button svg {
   height: 14px;
   stroke-width: 3px;
 }
@@ -1476,7 +1496,7 @@ video {
   }
 
   .site-nav-link-item:hover:before {
-    color: var(--red);
+    color: var(--black);
   }
 }
 
@@ -1500,7 +1520,7 @@ video {
   }
 
   .site-nav-link-item:hover:before {
-    color: var(--red);
+    color: var(--black);
   }
 }
 
@@ -1580,7 +1600,7 @@ video {
   }
 
   .site-nav-link-item:hover:before {
-    color: var(--red);
+    color: var(--black);
   }
 
   .page-content {

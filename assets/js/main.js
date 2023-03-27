@@ -99,32 +99,28 @@ function filterProject() {
 // Text Animation
 function revealAnimation() {
   const target = document.querySelector('.site-big-text h1');
+  const split = SplitType.create(target);
 
   var tl = anime.timeline({
     easing: "easeInOutExpo",
-    duration: 750
-  });
-
-  Splitting({
-    target: target,
-    by: 'chars'
+    duration: 1000
   });
 
   tl
     .add({
-      targets: ".char",
+      targets: ".word",
       translateY: ["1em", 0],
       opacity: [0, 1],
-      delay: anime.stagger(10)
+      delay: anime.stagger(20)
     }).add({
       targets: ".animation--line",
       scaleX: [0, 1],
-      delay: anime.stagger(80)
+      delay: anime.stagger(40)
     }, '-=800').add({
       targets: ".animation--fadein",
       opacity: [0, 1],
       translateY: ["10", 0],
-      delay: anime.stagger(80)
+      delay: anime.stagger(60)
     }, '-=800');
 }
 
@@ -219,7 +215,7 @@ function activeLink() {
 document.addEventListener("DOMContentLoaded", function () {
   if ($(window).width() > 769) {
     closeFunction();
-    screenSaver();
+    // screenSaver();
     headerAnimation();
     window.setInterval(function () {
       updateClock();
