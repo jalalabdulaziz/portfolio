@@ -102,7 +102,7 @@ function revealAnimation() {
   const split = SplitType.create(target);
 
   var tl = anime.timeline({
-    easing: "easeInOutExpo",
+    easing: "easeInOutQuint",
     duration: 1000
   });
 
@@ -120,7 +120,7 @@ function revealAnimation() {
       targets: ".animation--fadein",
       opacity: [0, 1],
       translateY: ["10", 0],
-      delay: anime.stagger(60)
+      delay: anime.stagger(40)
     }, '-=800');
 }
 
@@ -160,14 +160,14 @@ function srollToTop() {
       targets: scrollElement,
       scrollTop: 0,
       duration: 500 + scrollduration,
-      easing: "easeInOutExpo",
+      easing: "easeInOutQuint",
     });
   } else {
     anime({
       targets: scrollElement,
       scrollTop: 0,
       duration: 800,
-      easing: "easeInOutExpo",
+      easing: "easeInOutQuint",
     });
   }
 }
@@ -215,7 +215,7 @@ function activeLink() {
 document.addEventListener("DOMContentLoaded", function () {
   if ($(window).width() > 769) {
     closeFunction();
-    // screenSaver();
+    screenSaver();
     headerAnimation();
     window.setInterval(function () {
       updateClock();
