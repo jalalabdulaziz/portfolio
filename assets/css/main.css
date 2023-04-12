@@ -330,17 +330,46 @@ a:hover {
   display: inline;
   height: 1em;
   color: var(--black);
+  -webkit-animation: bullet .3s;
+  animation: bullet .3s;
+  transform-origin: bottom;
+  transition: all .3s ease-in-out;
 }
 
 .site-nav-link-item:hover:before {
   color: var(--lightgray);
 }
 
+@-webkit-keyframes bullet {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bullet {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .footer-button-container {
   text-align: right;
 }
 
-.site-nav-link-right .close, .toggle-button {
+.site-nav-link-right .close,
+.toggle-button {
   cursor: pointer;
   display: inline-flex;
   border: 1px solid var(--black);
@@ -362,7 +391,8 @@ a:hover {
   margin-left: 5px;
 }
 
-.site-nav-link-right .close svg, .toggle-button svg {
+.site-nav-link-right .close svg,
+.toggle-button svg {
   height: 14px;
   stroke-width: 3px;
 }
