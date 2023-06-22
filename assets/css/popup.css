@@ -7,7 +7,7 @@
   z-index: 1042;
   overflow: hidden;
   position: fixed;
-  background: #0b0b0b;
+  background: #000000;
   opacity: 0.8;
 }
 
@@ -154,31 +154,28 @@ button::-moz-focus-inner {
   top: 0;
   text-decoration: none;
   text-align: center;
-  opacity: 0.75;
-  padding: 0 0 18px 10px;
   color: #fff;
   font-family: "Webfont Sans", "Helvetica Neue", sans-serif;
-  font-size: 15px;
-}
-
-.mfp-close:hover,
-.mfp-close:focus {
-  opacity: 1;
+  font-size: 14px;
 }
 
 .mfp-close:active {
   top: 1px;
 }
 
-.mfp-close-btn-in .mfp-close {
-  color: #333;
-}
-
 .mfp-image-holder .mfp-close,
 .mfp-iframe-holder .mfp-close {
-  color: #fff;
+  color: var(--white);
   text-align: right;
   width: 100%;
+}
+
+.mfp-close:hover,
+.mfp-close:focus {
+  opacity: 1;
+  background: var(--white);
+  color: #000000;
+  transition: all 0.3s 0s ease;
 }
 
 .mfp-counter {
@@ -265,21 +262,21 @@ button::-moz-focus-inner {
   border-left: 27px solid #3f3f3f;
 }
 
-.mfp-iframe-holder {
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
-
 .mfp-iframe-holder .mfp-content {
   line-height: 0;
   width: 100%;
-  max-width: 1600px;
+  max-width: calc(177.778vh - 320px);
 }
 
 .mfp-iframe-holder .mfp-close {
-  position: fixed;
-  top: 20px;
-  right: 20px;
+  position: absolute;
+  top: -2.75em;
+  width: auto;
+  display: inline-block;
+  border: 1px solid var(--white);
+  padding: 0.25em 0.75em;
+  border-radius: 1em;
+  transition: all 0.3s 0s ease;
 }
 
 .mfp-iframe-scaler {
@@ -376,7 +373,7 @@ img.mfp-img {
 }
 
 .mfp-anim.mfp-bg.mfp-ready {
-  opacity: 0.95;
+  opacity: 1;
 }
 
 .mfp-anim.mfp-bg.mfp-removing {

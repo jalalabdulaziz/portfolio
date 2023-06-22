@@ -188,7 +188,7 @@ function videoPopup() {
     mainClass: "mfp-anim",
     removalDelay: 500,
     preloader: true,
-    fixedContentPos: false,
+    fixedContentPos: true,
     iframe: {
       markup: '<div class="mfp-iframe-scaler">' +
         '<div class="mfp-close"></div>' +
