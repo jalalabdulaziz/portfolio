@@ -99,7 +99,7 @@ function filterProject() {
 // Text Animation
 function revealAnimation() {
   const target = document.querySelector('.site-big-text h1');
-  const split = SplitType.create(target);
+  const split = new SplitType(target, { types: 'lines, words' })
 
   var tl = anime.timeline({
     easing: "easeInOutQuint",
@@ -111,7 +111,7 @@ function revealAnimation() {
       targets: ".word",
       translateY: ["1em", 0],
       opacity: [0, 1],
-      delay: anime.stagger(20)
+      delay: anime.stagger(20),
     }).add({
       targets: ".animation--line",
       scaleX: [0, 1],
