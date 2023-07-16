@@ -112,6 +112,9 @@ function revealAnimation() {
       translateY: ["1em", 0],
       opacity: [0, 1],
       delay: anime.stagger(20),
+      complete: function (anim) {
+        SplitType.revert(target);
+      }
     }).add({
       targets: ".animation--line",
       scaleX: [0, 1],
