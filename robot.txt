@@ -1,0 +1,3 @@
+Sitemap: https://jalal.works/sitemap.xml
+User-agent: *
+Disallow:
