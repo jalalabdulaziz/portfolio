@@ -4,11 +4,11 @@
     <source data-srcset="/img/{{ post.data.imagedir }}/{{ post.data.imagedir }}_thumb.jpg 1x, /img/{{ post.data.imagedir }}/{{ post.data.imagedir }}_thumb.jpg 2x" media="(min-width: 512px)" />
     <img src="{% include "project-placeholder.liquid" %}" data-src="{% include "project-placeholder.liquid" %}" class="lazyload" alt="{{ post.data.title | capitalize }} project thumbnail" />
   </picture>
-  <div class="project-thumb-overlay"></div>
-  <div class="project-thumb-title-container">
-    <div class="project-thumb-title">
-      <h3 class="project-thumb-project-title">{{ post.data.title }}</h3>
-        <p class="project-thumb-project-subtitle">
+  <div class="project-thumb__overlay"></div>
+  <div class="project-thumb__title-container">
+    <div class="project-thumb__title">
+      <h3 class="project-thumb__project-title">{{ post.data.title }}</h3>
+        <p class="project-thumb__project-subtitle">
           {% if post.data.status == 'in-progress' %}
             In progress
           {% else %}

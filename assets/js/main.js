@@ -133,8 +133,8 @@ function updateClock() {
   var minute = moment(new Date());
   hour = hour.tz("Asia/Makassar").format("hh");
   minute = minute.tz("Asia/Makassar").format("mm A");
-  $(".screensaver-hour").text(hour);
-  $(".screensaver-minute").text(minute);
+  $(".screensaver__hour").text(hour);
+  $(".screensaver__minute").text(minute);
 }
 
 // Header Animation
@@ -205,12 +205,12 @@ function videoPopup() {
 // Active Nav Link
 function activeLink() {
   if (location.pathname.split("/")[1] !== "") {
-    $(".site-nav-link-item").removeClass("site-nav--active");
+    $(".site-nav__link-item").removeClass("site-nav--active");
     $(
-      '.site-nav-link-item[href^="/' + location.pathname.split("/")[1] + '"]'
+      '.site-nav__link-item[href^="/' + location.pathname.split("/")[1] + '"]'
     ).addClass("site-nav--active");
   } else {
-    $(".site-nav-link-item").removeClass("site-nav--active");
+    $(".site-nav__link-item").removeClass("site-nav--active");
   }
 }
 

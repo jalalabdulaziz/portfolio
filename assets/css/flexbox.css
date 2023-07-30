@@ -1,12 +1,12 @@
 /**
  * Flexbox Grid
  */
-.container-fluid {
+.container--fluid {
   margin-right: auto;
   margin-left: auto;
 }
 
-.container-fluid-inner {
+.container--fluid-inner {
   max-width: 1680px;
   margin: 0 auto;
   padding: 30px;
