@@ -25,24 +25,27 @@ function screenSaver() {
 
 // Dark Mode
 function darkMode() {
-var toggle = document.getElementById("theme-toggle");
+  var toggle = document.getElementById("theme-toggle");
 
-var storedTheme = localStorage.getItem('theme') || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-if (storedTheme)
-    document.documentElement.setAttribute('data-theme', storedTheme)
+  var storedTheme =
+    localStorage.getItem("theme") ||
+    (window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light");
+  if (storedTheme)
+    document.documentElement.setAttribute("data-theme", storedTheme);
 
-
-toggle.onclick = function() {
+  toggle.onclick = function () {
     var currentTheme = document.documentElement.getAttribute("data-theme");
     var targetTheme = "light";
 
     if (currentTheme === "light") {
-        targetTheme = "dark";
+      targetTheme = "dark";
     }
 
-    document.documentElement.setAttribute('data-theme', targetTheme)
-    localStorage.setItem('theme', targetTheme);
-};
+    document.documentElement.setAttribute("data-theme", targetTheme);
+    localStorage.setItem("theme", targetTheme);
+  };
 }
 
 // Project Filter
@@ -51,80 +54,86 @@ function filterProject() {
     var val = $(this).val();
     var tl = anime.timeline({
       easing: "easeInOutExpo",
-      duration: 400
+      duration: 400,
     });
     if (val == "all") {
-      tl
-        .add({
-          targets: ".project-all-item",
-          opacity: [1, 0],
-          translateY: [0, 10],
-          delay: anime.stagger(100),
-          complete: function () {
-            $('.project-all-item').removeClass('hide');
-          }
-        }).add({
-          targets: ".project-all-item",
-          opacity: [0, 1],
-          translateY: [10, 0],
-          delay: anime.stagger(100)
-        });
+      tl.add({
+        targets: ".project-all-item",
+        opacity: [1, 0],
+        translateY: [0, 10],
+        delay: anime.stagger(100),
+        complete: function () {
+          $(".project-all-item").removeClass("hide");
+        },
+      }).add({
+        targets: ".project-all-item",
+        opacity: [0, 1],
+        translateY: [10, 0],
+        delay: anime.stagger(100),
+      });
     } else {
-      tl
-        .add({
-          targets: ".project-all-item",
-          opacity: [1, 0],
-          translateY: [0, 10],
-          delay: anime.stagger(100),
-          complete: function () {
-            $('.project-all-item').removeClass('hide');
-            $('.project-all-item').filter(':not([data-scope*="' + val + '"])').addClass('hide');
-          }
-        }).add({
-          targets: ".project-all-item",
-          opacity: [0, 1],
-          translateY: [10, 0],
-          delay: anime.stagger(100)
-        });
+      tl.add({
+        targets: ".project-all-item",
+        opacity: [1, 0],
+        translateY: [0, 10],
+        delay: anime.stagger(100),
+        complete: function () {
+          $(".project-all-item").removeClass("hide");
+          $(".project-all-item")
+            .filter(':not([data-scope*="' + val + '"])')
+            .addClass("hide");
+        },
+      }).add({
+        targets: ".project-all-item",
+        opacity: [0, 1],
+        translateY: [10, 0],
+        delay: anime.stagger(100),
+      });
     }
   });
 
   $(".project-filter label").on("click", function (e) {
-    $('.project-filter label').removeClass('selected');
-    $(this).addClass('selected');
+    $(".project-filter label").removeClass("selected");
+    $(this).addClass("selected");
   });
 }
 
-
 // Text Animation
 function revealAnimation() {
-  const target = document.querySelector('.site-big-text h1');
-  const split = new SplitType(target, { types: 'lines, words' })
+  const target = document.querySelector(".site-big-text h1");
+  const split = new SplitType(target, { types: "lines, words" });
 
   var tl = anime.timeline({
     easing: "easeInOutQuint",
-    duration: 1000
+    duration: 1000,
   });
 
-  tl
-    .add({
-      targets: ".word",
-      translateY: ["1em", 0],
-      opacity: [0, 1],
-      delay: anime.stagger(20),
-      complete: function (anim) {
-        SplitType.revert(target);
-      }
-    }).add({
-      targets: ".animation--line",
-      scaleX: [0, 1],
-      delay: anime.stagger(40)
-    }, '-=800').add({
-      targets: ".animation--fadein",
-      opacity: [0, 1],
-      translateY: ["10", 0],
-      delay: anime.stagger(40)
-    }, '-=800');
+  tl.add({
+    targets: ".word",
+    translateY: ["1em", 0],
+    opacity: [0, 1],
+    delay: anime.stagger(20),
+    complete: function (anim) {
+      SplitType.revert(target);
+    },
+  })
+    .add(
+      {
+        targets: ".animation--line",
+        scaleX: [0, 1],
+        delay: anime.stagger(40),
+      },
+      "-=800"
+    )
+    .add(
+      {
+        targets: ".animation--fadein",
+        opacity: [0, 1],
+        translateY: ["10", 0],
+        delay: anime.stagger(40),
+      },
+      "-=800"
+    );
 }
 
 // Time
@@ -193,7 +202,8 @@ function videoPopup() {
     preloader: true,
     fixedContentPos: true,
     iframe: {
-      markup: '<div class="mfp-iframe-scaler">' +
+      markup:
+        '<div class="mfp-iframe-scaler">' +
         '<div class="mfp-close"></div>' +
         '<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>' +
         "</div>",
@@ -248,34 +258,36 @@ document.addEventListener("lazyloaded", function (e) {
 
 // Barba
 barba.init({
-  transitions: [{
-    name: "page-transition",
-    leave: (data) => {
-      return new Promise((resolve) => {
-        srollToTop();
-        anime({
-          targets: data.current.container,
-          opacity: 0,
-          translateY: 40,
-          easing: "easeInOutExpo",
-          duration: 400,
-          complete: () => {
-            resolve();
-          },
+  transitions: [
+    {
+      name: "page-transition",
+      leave: (data) => {
+        return new Promise((resolve) => {
+          srollToTop();
+          anime({
+            targets: data.current.container,
+            opacity: 0,
+            translateY: 40,
+            easing: "easeInOutExpo",
+            duration: 400,
+            complete: () => {
+              resolve();
+            },
+          });
         });
-      });
+      },
+      enter: (data) => {
+        anime({
+          targets: data.next.container,
+          opacity: 0,
+          translateY: 80,
+          direction: "reverse",
+          easing: "easeInOutExpo",
+          duration: 800,
+        });
+      },
     },
-    enter: (data) => {
-      anime({
-        targets: data.next.container,
-        opacity: 0,
-        translateY: 80,
-        direction: "reverse",
-        easing: "easeInOutExpo",
-        duration: 800,
-      });
-    },
-  }, ],
+  ],
 });
 
 barba.hooks.after((data) => {
@@ -293,8 +305,4 @@ barba.hooks.after((data) => {
   activeLink();
   revealAnimation();
   filterProject();
-
-  if (typeof ga === "function") {
-    ga("send", "pageview", location.pathname);
-  }
 });
