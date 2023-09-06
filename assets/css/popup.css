@@ -1,4 +1,6 @@
-/* Magnific Popup CSS */
+/**
+ * Magnific Popup CSS
+ */
 .mfp-bg {
   top: 0;
   left: 0;
@@ -155,7 +157,7 @@ button::-moz-focus-inner {
   text-decoration: none;
   text-align: center;
   color: #fff;
-  font-family: "Webfont Sans", "Helvetica Neue", sans-serif;
+  font-family: "Webfont", "Helvetica Neue", sans-serif;
   font-size: 14px;
 }
 
@@ -396,11 +398,7 @@ img.mfp-img {
 }
 
 @media screen and (max-width: 800px) and (orientation: landscape),
-screen and (max-height: 300px) {
-
-  /**
-       * Remove all paddings around the image on small screen
-       */
+  screen and (max-height: 300px) {
   .mfp-img-mobile .mfp-image-holder {
     padding-left: 0;
     padding-right: 0;
