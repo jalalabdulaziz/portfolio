@@ -688,22 +688,32 @@ video {
 }
 
 @-webkit-keyframes pulse {
-  from {
+  0% {
+    opacity: 1;
+  }
+  49% {
+    opacity: 1;
+  }
+  50% {
     opacity: 0;
   }
-
-  to {
-    opacity: 1;
+  100% {
+    opacity: 0;
   }
 }
 
 @keyframes pulse {
-  from {
+  0% {
+    opacity: 1;
+  }
+  49% {
+    opacity: 1;
+  }
+  50% {
     opacity: 0;
   }
-
-  to {
-    opacity: 1;
+  100% {
+    opacity: 0;
   }
 }
 
@@ -824,7 +834,7 @@ video {
   }
 
   .project-list-header-link {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .site-header .row {
@@ -942,7 +952,7 @@ video {
 
   .project-meta {
     margin-top: 40px;
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .site-nav .site-nav__link:not(:last-child) {
