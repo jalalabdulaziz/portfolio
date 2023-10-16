@@ -64,7 +64,7 @@ html {
 body {
   font-family: "Webfont", "Helvetica Neue", "Helvetica", sans-serif;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.35;
   color: var(--text-color);
   background: var(--bg-color);
@@ -216,7 +216,7 @@ h4,
 h5,
 h6 {
   font-weight: 400;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .site-big-text h1 {
@@ -323,8 +323,8 @@ a:hover {
 .site-nav--active:before,
 .site-nav__link-item:hover:before {
   content: "\2022";
-  font-size: 14px;
-  line-height: 28px;
+  font-size: 13px;
+  line-height: 26px;
   position: absolute;
   display: inline;
   color: var(--black);
@@ -391,7 +391,7 @@ a:hover {
 }
 
 .project-list-header-link {
-  font-size: 14px;
+  font-size: 13px;
   border: 1px solid var(--black);
   border-radius: 2em;
   padding: 0.2em 0.75em;
@@ -475,7 +475,7 @@ a:hover {
   display: block;
   opacity: 0;
   font-weight: normal;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1;
   color: var(--white);
   transition: all 0.3s cubic-bezier(0.215, 0.6, 0.355, 1) 150ms;
@@ -485,7 +485,7 @@ a:hover {
 .project-thumb__project-title {
   position: relative;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1;
   color: var(--white);
   display: inline-block;
@@ -494,7 +494,7 @@ a:hover {
 .project-thumb__project-subtitle {
   position: relative;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1;
   color: var(--gray);
   margin-top: 3px;

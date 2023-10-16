@@ -25,9 +25,9 @@ function screenSaver() {
 
 // Lenis Smooth Scroll
 function lenisScroll() {
-  const lenis = new Lenis();
-
-  lenis.on("scroll", (e) => {});
+  const lenis = new Lenis({
+    duration: 1,
+  });
 
   function raf(time) {
     lenis.raf(time);
