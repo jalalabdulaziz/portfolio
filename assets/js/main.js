@@ -23,6 +23,20 @@ function screenSaver() {
   });
 }
 
+// Lenis Smooth Scroll
+function lenisScroll() {
+  const lenis = new Lenis();
+
+  lenis.on("scroll", (e) => {});
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
+  requestAnimationFrame(raf);
+}
+
 // Dark Mode
 function darkMode() {
   var toggle = document.getElementById("theme-toggle");
@@ -244,6 +258,7 @@ document.addEventListener("DOMContentLoaded", function () {
   activeLink();
   revealAnimation();
   filterProject();
+  lenisScroll();
 });
 
 document.addEventListener("lazyloaded", function (e) {
@@ -305,4 +320,5 @@ barba.hooks.after((data) => {
   activeLink();
   revealAnimation();
   filterProject();
+  lenisScroll();
 });
