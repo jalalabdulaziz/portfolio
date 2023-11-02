@@ -4,7 +4,7 @@ layout: project-page-template.liquid
 
 {% for file in collections.gallery %}
 {% if file contains imagedir %}
-{% unless file contains 'thumb' or file contains 'autoplay' or file contains 'poster' or file contains '.mp4' or file contains '.gif' or file contains 'half.jpg' or file contains 'large.jpg' %}
+{% unless file contains 'thumb' or file contains 'autoplay' or file contains 'poster' or file contains 'video' or file contains '.mp4' or file contains '.gif' or file contains 'half.jpg' or file contains 'large.jpg' %}
 {% if file contains '.jpg' %}
 <div class="row">
   <div
@@ -24,13 +24,13 @@ layout: project-page-template.liquid
 {% endunless %}
 
 {% unless file contains 'thumb' %} {% unless file contains 'autoplay' %}
-{% if file contains '.mp4' %}
+{% if file contains '.mp4' or file contains 'video'%}
 <div class="row">
   <div class="col-xs-12 col-sm-12">
     <div class="project-img">
-      <a class="video-popup" href="/{{ file | url }}" data-barba-prevent="all">
+      <a class="video-popup" href="https://jalalabdulaziz.wistia.com/medias/{{ file | slice: -14,10 }}" data-barba-prevent="all">
         <div class="project-img">
-          <img class="lazyload" src="/{{ file | replace: ".mp4", "_poster.jpg" }}">
+          <img class="lazyload" src="/{{ file }}">
           <div class="video-play-button">
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 70 70"
