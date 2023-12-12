@@ -62,46 +62,49 @@ function darkMode() {
   };
 }
 
-// Project Filter
 function filterProject() {
   $(".project-filter-button").on("click", function (e) {
     var val = $(this).val();
-    var tl = anime.timeline({
-      easing: "easeInOutExpo",
-      duration: 400,
-    });
+
     if (val == "all") {
-      tl.add({
-        targets: ".project-all-item",
-        opacity: [1, 0],
-        translateY: [0, 10],
-        delay: anime.stagger(100),
-        complete: function () {
+      gsap.to(".project-all-item", {
+        opacity: 0,
+        y: 10,
+        duration: 0.4,
+        stagger: 0.1,
+        ease: "power2.inOut",
+        onComplete: function () {
           $(".project-all-item").removeClass("hide");
+          gsap.to(".project-all-item", {
+            opacity: 1,
+            y: 0,
+            duration: 0.4,
+            stagger: 0.1,
+            ease: "power2.inOut",
+          });
         },
-      }).add({
-        targets: ".project-all-item",
-        opacity: [0, 1],
-        translateY: [10, 0],
-        delay: anime.stagger(100),
       });
     } else {
-      tl.add({
-        targets: ".project-all-item",
-        opacity: [1, 0],
-        translateY: [0, 10],
-        delay: anime.stagger(100),
-        complete: function () {
+      gsap.to(".project-all-item", {
+        opacity: 0,
+        y: 10,
+        duration: 0.4,
+        stagger: 0.1,
+        ease: "power2.inOut",
+        onComplete: function () {
           $(".project-all-item").removeClass("hide");
           $(".project-all-item")
             .filter(':not([data-scope*="' + val + '"])')
             .addClass("hide");
+
+          gsap.to(".project-all-item:not(.hide)", {
+            opacity: 1,
+            y: 0,
+            duration: 0.4,
+            stagger: 0.3,
+            ease: "power2.inOut",
+          });
         },
-      }).add({
-        targets: ".project-all-item",
-        opacity: [0, 1],
-        translateY: [10, 0],
-        delay: anime.stagger(100),
       });
     }
   });
@@ -112,41 +115,47 @@ function filterProject() {
   });
 }
 
-// Text Animation
 function revealAnimation() {
   const target = document.querySelector(".site-big-text h1");
   const split = new SplitType(target, { types: "lines, words" });
 
-  var tl = anime.timeline({
-    easing: "easeInOutQuint",
-    duration: 1000,
+  var tl = gsap.timeline({
+    defaults: {
+      ease: "expo.InOut",
+      duration: 0.6,
+      stagger: 0.05,
+    },
   });
 
-  tl.add({
-    targets: ".word",
-    translateY: ["1em", 0],
-    opacity: [0, 1],
-    delay: anime.stagger(20),
-    complete: function (anim) {
+  tl.from(".word", {
+    y: "1em",
+    opacity: 0,
+    onComplete: function () {
       SplitType.revert(target);
     },
   })
-    .add(
+    .fromTo(
+      ".animation--line",
       {
-        targets: ".animation--line",
-        scaleX: [0, 1],
-        delay: anime.stagger(40),
+        scaleX: 0,
       },
-      "-=800"
+      {
+        scaleX: 1,
+        duration: 0.8,
+      },
+      "-=0.5"
     )
-    .add(
+    .fromTo(
+      ".animation--fadein",
       {
-        targets: ".animation--fadein",
-        opacity: [0, 1],
-        translateY: ["10", 0],
-        delay: anime.stagger(40),
+        opacity: 0,
+        y: 10,
       },
-      "-=800"
+      {
+        opacity: 1,
+        y: 0,
+      },
+      "-=0.5"
     );
 }
 
@@ -181,20 +190,11 @@ function srollToTop() {
     window.document.documentElement;
   var distance = jQuery(window).scrollTop();
   var scrollduration = distance / 10;
+  var totalduration = 500 + scrollduration;
   if (distance > 800) {
-    anime({
-      targets: scrollElement,
-      scrollTop: 0,
-      duration: 500 + scrollduration,
-      easing: "easeInOutQuint",
-    });
+    $("html, body").animate({ scrollTop: 0 }, totalduration, "swing");
   } else {
-    anime({
-      targets: scrollElement,
-      scrollTop: 0,
-      duration: 800,
-      easing: "easeInOutQuint",
-    });
+    $("html, body").animate({ scrollTop: 0 }, 500, "swing");
   }
 }
 
@@ -259,43 +259,34 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("lazyloaded", function (e) {
-  anime({
-    targets: e.target,
+  gsap.from(e.target, {
     opacity: 0,
-    easing: "easeInOutCubic",
-    direction: "reverse",
-    duration: 300,
+    duration: 0.3,
+    ease: "power2.inOut",
   });
 });
 
-// Barba
 barba.init({
   transitions: [
     {
       name: "page-transition",
-      leave: (data) => {
-        return new Promise((resolve) => {
-          srollToTop();
-          anime({
-            targets: data.current.container,
+      async leave(data) {
+        await srollToTop();
+        return gsap
+          .to(data.current.container, {
             opacity: 0,
-            translateY: 40,
-            easing: "easeInOutExpo",
-            duration: 400,
-            complete: () => {
-              resolve();
-            },
-          });
-        });
+            y: 40,
+            duration: 0.4,
+            ease: "power2.inOut",
+          })
+          .then(() => new Promise((resolve) => setTimeout(resolve, 400)));
       },
-      enter: (data) => {
-        anime({
-          targets: data.next.container,
+      enter(data) {
+        gsap.from(data.next.container, {
           opacity: 0,
-          translateY: 80,
-          direction: "reverse",
-          easing: "easeInOutExpo",
-          duration: 800,
+          y: 80,
+          duration: 0.6,
+          ease: "power2.inOut",
         });
       },
     },
