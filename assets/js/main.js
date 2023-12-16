@@ -62,6 +62,7 @@ function darkMode() {
   };
 }
 
+// Project Filter
 function filterProject() {
   $(".project-filter-button").on("click", function (e) {
     var val = $(this).val();
@@ -115,6 +116,41 @@ function filterProject() {
   });
 }
 
+// Loader Animation
+function loaderAnimation() {
+  const loader = document.querySelector(".loader");
+  const circle = document.querySelector(".loader-circle");
+  const logo = document.querySelector(".loader-logo");
+  var tl = gsap.timeline({
+    defaults: {
+      ease: "expo.InOut",
+      duration: 0.5,
+      stagger: 0.15,
+    },
+  });
+
+  tl.from(logo, {
+    y: "30",
+    opacity: 0,
+  })
+    .to(circle, {
+      strokeDashoffset: 0,
+      duration: 3.5,
+    })
+    .to(
+      loader,
+      {
+        opacity: 0,
+        onComplete: function () {
+          $(loader).fadeOut(300);
+          $(loader).remove();
+        },
+      },
+      "-=2.5"
+    );
+}
+
+// Reveal Animation
 function revealAnimation() {
   const target = document.querySelector(".site-big-text h1");
   const split = new SplitType(target, { types: "lines, words" });
@@ -254,6 +290,7 @@ document.addEventListener("DOMContentLoaded", function () {
   videoPopup();
   activeLink();
   revealAnimation();
+  loaderAnimation();
   filterProject();
   lenisScroll();
 });
@@ -266,6 +303,7 @@ document.addEventListener("lazyloaded", function (e) {
   });
 });
 
+// Barba
 barba.init({
   transitions: [
     {

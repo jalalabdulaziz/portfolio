@@ -567,6 +567,7 @@ a:hover {
   background: var(--black);
   color: var(--white);
   transition: all 0.3s ease;
+  pointer-events: none;
 }
 
 .hide {
@@ -629,9 +630,10 @@ video {
 }
 
 /**
- * Screensaver
+ * Screensaver & Loader
  */
-.screensaver {
+.screensaver,
+.loader {
   display: none;
   width: 100%;
   height: 100%;
@@ -641,7 +643,8 @@ video {
   z-index: 9999 !important;
 }
 
-.screensaver-container {
+.screensaver-container,
+.loader-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -663,6 +666,35 @@ video {
   font-size: clamp(24px, 15vw, 256px);
   display: inline-block;
   line-height: 1;
+}
+
+.loader {
+  display: block;
+}
+
+.loader-container {
+  background: var(--lightgray);
+}
+
+.loader-circle {
+  width: 80px;
+  height: 80px;
+  stroke: var(--black);
+  fill: transparent;
+  position: absolute;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+
+.loader-logo-container {
+  position: relative;
+  width: 28px;
+  height: 17px;
+  overflow: hidden;
+}
+
+.loader-logo {
+  fill: var(--black);
 }
 
 @-webkit-keyframes pulse {
