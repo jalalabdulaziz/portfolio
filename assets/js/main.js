@@ -289,8 +289,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   videoPopup();
   activeLink();
-  revealAnimation();
   loaderAnimation();
+  function delayAnimation() {
+    revealAnimation();
+  }
+  setTimeout(delayAnimation, 1250);
   filterProject();
   lenisScroll();
 });
