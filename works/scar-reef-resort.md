@@ -6,22 +6,22 @@ imagedir: scarreefresort
 categories: works
 date: 2018-05-01
 year: 2019
-scope: 
-    - Branding
-    - Creative Direction
-    - Digital
+scope:
+  - Branding
+  - Creative Direction
+  - Digital
 agency:
-collaborator: 
+collaborator:
 credit:
-    - Photography by Silvio
-    - Photography & videography by Erick Regnard
+  - Photography by Silvio
+  - Photography & videography by Erick Regnard
 creative-director:
-status:
+status: in-progress
 featured: featured
 thumbnail-type: image
-tag: 
-    - creativedirection
-    - brandidentity
+tag:
+  - creativedirection
+  - brandidentity
 ---
 
 Brand identity for an eco resort located in West Sumbawa. More details soon.

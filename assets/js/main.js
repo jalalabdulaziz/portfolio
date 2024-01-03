@@ -1,25 +1,42 @@
 // Screensaver
 function screenSaver() {
   var s_saver;
+  const targetSaver = document.querySelector(".screensaver");
 
-  $("body").mousemove(function () {
+  document.addEventListener("scroll", function () {
     clearTimeout(s_saver);
 
     s_saver = setTimeout(function () {
-      $(".screensaver").fadeIn(600);
+      gsap.to(targetSaver, {
+        opacity: 1,
+        display: "block",
+        duration: 0.2,
+      });
     }, 40000);
-
-    $(".screensaver").fadeOut(300);
+    gsap.to(targetSaver, {
+      opacity: 0,
+      display: "none",
+      duration: 0.5,
+      delay: 0.2,
+    });
   });
 
-  $("body").on("wheel", function (e) {
+  document.addEventListener("mousemove", function () {
     clearTimeout(s_saver);
 
     s_saver = setTimeout(function () {
-      $(".screensaver").fadeIn(600);
+      gsap.to(targetSaver, {
+        opacity: 1,
+        display: "block",
+        duration: 0.2,
+      });
     }, 20000);
-
-    $(".screensaver").fadeOut(300);
+    gsap.to(targetSaver, {
+      opacity: 0,
+      display: "none",
+      duration: 0.3,
+      delay: 0.3,
+    });
   });
 }
 
@@ -35,84 +52,113 @@ function lenisScroll() {
   }
 
   requestAnimationFrame(raf);
+
+  const target = document.querySelector(".site-footer");
+  const rect = target.getBoundingClientRect().top;
+  const height = window.innerHeight;
+  const speed = Math.round(rect / height / 4) + 1;
+  console.log(rect, height, speed);
+  const topButton = document.querySelector(".top-button");
+  topButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    lenis.scrollTo("top", {
+      duration: speed,
+    });
+  });
 }
 
-// Dark Mode
-function darkMode() {
-  var toggle = document.getElementById("theme-toggle");
+// Scroll to top
+function scrollTop() {
+  const lenisScroll = new Lenis({
+    duration: 1,
+  });
 
-  var storedTheme =
-    localStorage.getItem("theme") ||
-    (window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light");
-  if (storedTheme)
-    document.documentElement.setAttribute("data-theme", storedTheme);
+  function raf(time) {
+    lenisScroll.raf(time);
+    requestAnimationFrame(raf);
+  }
 
-  toggle.onclick = function () {
-    var currentTheme = document.documentElement.getAttribute("data-theme");
-    var targetTheme = "light";
+  requestAnimationFrame(raf);
 
-    if (currentTheme === "light") {
-      targetTheme = "dark";
-    }
-
-    document.documentElement.setAttribute("data-theme", targetTheme);
-    localStorage.setItem("theme", targetTheme);
-  };
+  lenisScroll.scrollTo("top", {
+    duration: 1,
+  });
 }
 
 // Project Filter
 function filterProject() {
-  $(".project-filter-button").on("click", function (e) {
-    var val = $(this).val();
+  const projectFilterButtons = document.querySelectorAll(
+    ".project-filter-button"
+  );
+  const projectAllItems = document.querySelectorAll(".project-all-item");
+  const projectShownItems = document.querySelectorAll(
+    ".project-all-item:not(.hide)"
+  );
+  const filterLabels = document.querySelectorAll(".project-filter label");
 
-    if (val == "all") {
-      gsap.to(".project-all-item", {
-        opacity: 0,
-        y: 10,
-        duration: 0.4,
-        stagger: 0.1,
-        ease: "power2.inOut",
-        onComplete: function () {
-          $(".project-all-item").removeClass("hide");
-          gsap.to(".project-all-item", {
-            opacity: 1,
-            y: 0,
-            duration: 0.4,
-            stagger: 0.1,
-            ease: "power2.inOut",
-          });
-        },
-      });
-    } else {
-      gsap.to(".project-all-item", {
-        opacity: 0,
-        y: 10,
-        duration: 0.4,
-        stagger: 0.1,
-        ease: "power2.inOut",
-        onComplete: function () {
-          $(".project-all-item").removeClass("hide");
-          $(".project-all-item")
-            .filter(':not([data-scope*="' + val + '"])')
-            .addClass("hide");
+  projectFilterButtons.forEach((button) => {
+    button.addEventListener("click", function (e) {
+      const val = this.value;
 
-          gsap.to(".project-all-item:not(.hide)", {
-            opacity: 1,
-            y: 0,
-            duration: 0.4,
-            stagger: 0.3,
-            ease: "power2.inOut",
-          });
-        },
-      });
-    }
+      if (val === "all") {
+        gsap.to(projectAllItems, {
+          opacity: 0,
+          y: 10,
+          duration: 0.4,
+          stagger: 0.1,
+          ease: "power2.inOut",
+          onComplete: function () {
+            projectAllItems.forEach((item) => {
+              item.classList.remove("hide");
+            });
+
+            gsap.to(projectAllItems, {
+              opacity: 1,
+              y: 0,
+              duration: 0.2,
+              stagger: 0.1,
+              ease: "power2.inOut",
+            });
+          },
+        });
+      } else {
+        gsap.to(projectAllItems, {
+          opacity: 0,
+          y: 10,
+          duration: 0.3,
+          stagger: 0.1,
+          ease: "power2.inOut",
+          onComplete: function () {
+            projectAllItems.forEach((item) => {
+              item.classList.remove("hide");
+            });
+
+            projectAllItems.forEach((item) => {
+              if (!item.dataset.scope.includes(val)) {
+                item.classList.add("hide");
+              }
+            });
+
+            gsap.to(projectShownItems, {
+              opacity: 1,
+              y: 0,
+              duration: 0.4,
+              stagger: 0.1,
+              ease: "power2.inOut",
+            });
+          },
+        });
+      }
+    });
   });
 
-  $(".project-filter label").on("click", function (e) {
-    $(".project-filter label").removeClass("selected");
-    $(this).addClass("selected");
+  filterLabels.forEach((label) => {
+    label.addEventListener("click", function (e) {
+      filterLabels.forEach((label) => {
+        label.classList.remove("selected");
+      });
+      this.classList.add("selected");
+    });
   });
 }
 
@@ -142,8 +188,7 @@ function loaderAnimation() {
       {
         opacity: 0,
         onComplete: function () {
-          $(loader).fadeOut(300);
-          $(loader).remove();
+          loader.remove();
         },
       },
       "-=2.5"
@@ -152,7 +197,7 @@ function loaderAnimation() {
 
 // Reveal Animation
 function revealAnimation() {
-  const target = document.querySelector(".site-big-text h1");
+  const target = document.querySelectorAll(".site-big-text h1");
   const split = new SplitType(target, { types: "lines, words" });
 
   var tl = gsap.timeline({
@@ -199,10 +244,15 @@ function revealAnimation() {
 function updateClock() {
   var hour = moment(new Date());
   var minute = moment(new Date());
+
   hour = hour.tz("Asia/Makassar").format("hh");
   minute = minute.tz("Asia/Makassar").format("mm A");
-  $(".screensaver__hour").text(hour);
-  $(".screensaver__minute").text(minute);
+
+  const targetHour = document.querySelector(".screensaver__hour");
+  const targetMinute = document.querySelector(".screensaver__minute");
+
+  targetHour.textContent = hour;
+  targetMinute.textContent = minute;
 }
 
 // Header Animation
@@ -218,76 +268,53 @@ function headerAnimation() {
   headroom.init();
 }
 
-// Scroll to Top
-function srollToTop() {
-  const scrollElement =
-    window.document.scrollingElement ||
-    window.document.body ||
-    window.document.documentElement;
-  var distance = jQuery(window).scrollTop();
-  var scrollduration = distance / 10;
-  var totalduration = 500 + scrollduration;
-  if (distance > 800) {
-    $("html, body").animate({ scrollTop: 0 }, totalduration, "swing");
-  } else {
-    $("html, body").animate({ scrollTop: 0 }, 500, "swing");
-  }
-}
-
 // Close Function
 function closeFunction() {
-  if ($(".project")[0]) {
-    $(".close").css("display", "inline-flex");
-  } else {
-    $(".close").css("display", "none");
-  }
-}
+  const projects = document.querySelectorAll(".project");
+  const closeButton = document.querySelector(".close");
 
-// Video Popup
-function videoPopup() {
-  $(".video-popup").magnificPopup({
-    type: "iframe",
-    iframe: {
-      patterns: {
-        wistia: {
-          index: "wistia.com",
-          id: "/",
-          src: "//fast.wistia.net/embed/iframe/%id%?autoPlay=1",
-        },
-      },
-    },
-  });
+  if (projects.length > 0) {
+    closeButton.style.display = "inline-flex";
+  } else {
+    closeButton.style.display = "none";
+  }
 }
 
 // Active Nav Link
 function activeLink() {
+  const navInactive = document.querySelectorAll(".site-nav__link-item");
+  const navActive = document.querySelector(
+    '.site-nav__link-item[href^="/' + location.pathname.split("/")[1] + '"]'
+  );
   if (location.pathname.split("/")[1] !== "") {
-    $(".site-nav__link-item").removeClass("site-nav--active");
-    $(
-      '.site-nav__link-item[href^="/' + location.pathname.split("/")[1] + '"]'
-    ).addClass("site-nav--active");
+    document;
+    navInactive.forEach((link) => link.classList.remove("site-nav--active"));
+    navActive.classList.add("site-nav--active");
   } else {
-    $(".site-nav__link-item").removeClass("site-nav--active");
+    document;
+    navInactive.forEach((link) => link.classList.remove("site-nav--active"));
   }
 }
 
 // Load Functions on Initial Page Load
 document.addEventListener("DOMContentLoaded", function () {
-  if ($(window).width() > 769) {
+  history.scrollRestoration = "manual";
+
+  gsap.config({
+    nullTargetWarn: false,
+  });
+
+  if (window.innerWidth > 769) {
     closeFunction();
     screenSaver();
     headerAnimation();
     window.setInterval(function () {
       updateClock();
     }, 1000);
+  } else {
   }
 
-  history.scrollRestoration = "manual";
-  $(".top-button").on("click", function () {
-    srollToTop();
-  });
-
-  videoPopup();
+  scrollTop();
   activeLink();
   loaderAnimation();
   function delayAnimation() {
@@ -312,7 +339,7 @@ barba.init({
     {
       name: "page-transition",
       async leave(data) {
-        await srollToTop();
+        await scrollTop();
         return gsap
           .to(data.current.container, {
             opacity: 0,
@@ -335,19 +362,17 @@ barba.init({
 });
 
 barba.hooks.after((data) => {
-  window.lazySizes.init();
-  if ($(window).width() > 769) {
-    closeFunction();
-  }
-
   history.scrollRestoration = "manual";
-  $(".top-button").on("click", function () {
-    srollToTop();
-  });
 
-  videoPopup();
+  window.lazySizes.init();
   activeLink();
-  revealAnimation();
   filterProject();
+  revealAnimation();
+  scrollTop();
   lenisScroll();
+
+  if (window.innerWidth > 769) {
+    closeFunction();
+  } else {
+  }
 });

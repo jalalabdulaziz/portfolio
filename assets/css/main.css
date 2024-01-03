@@ -114,6 +114,20 @@ input[type="radio"]:checked {
 }
 
 /**
+ * Utility
+ */
+.show {
+  opacity: 1;
+  /* display: block; */
+  transition: all 0.4s;
+}
+.hide {
+  opacity: 0;
+  /* display: none; */
+  transition: all 0.4s;
+}
+
+/**
  * Wrapper
  */
 .container {
