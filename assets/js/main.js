@@ -16,7 +16,7 @@ function screenSaver() {
     gsap.to(targetSaver, {
       opacity: 0,
       display: "none",
-      duration: 0.5,
+      duration: 0.2,
       delay: 0.2,
     });
   });
@@ -34,8 +34,8 @@ function screenSaver() {
     gsap.to(targetSaver, {
       opacity: 0,
       display: "none",
-      duration: 0.3,
-      delay: 0.3,
+      duration: 0.2,
+      delay: 0.2,
     });
   });
 }
