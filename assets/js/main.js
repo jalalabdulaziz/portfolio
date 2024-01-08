@@ -194,7 +194,7 @@ function loaderAnimation() {
     );
 }
 
-// Reveal Animation
+// Page Reveal Animation
 function revealAnimation() {
   const target = document.querySelectorAll(".site-big-text h1");
   const split = new SplitType(target, { types: "lines, words" });
