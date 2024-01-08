@@ -57,7 +57,6 @@ function lenisScroll() {
   const rect = target.getBoundingClientRect().top;
   const height = window.innerHeight;
   const speed = Math.round(rect / height / 4) + 1;
-  console.log(rect, height, speed);
   const topButton = document.querySelector(".top-button");
   topButton.addEventListener("click", function (e) {
     e.preventDefault();
