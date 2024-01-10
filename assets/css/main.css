@@ -80,6 +80,10 @@ picture {
   width: 100%;
 }
 
+.lazyloading {
+  background-image: red;
+}
+
 .separator {
   display: block;
   height: 1px;
@@ -234,10 +238,11 @@ h6 {
 }
 
 .site-big-text h1 {
-  font-size: 54px;
+  font-size: clamp(32px, 7.5vmin, 72px);
   font-weight: 500;
   line-height: 1.15;
   letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 .site-big-text .letter {
@@ -570,10 +575,6 @@ a:hover {
   margin-bottom: 30px;
 }
 
-.site-big-text-padding {
-  padding-right: 20vw;
-}
-
 /**
  * Project Filter
  */
@@ -880,10 +881,6 @@ video {
 
   .col-right {
     order: 1;
-  }
-
-  .site-big-text h1 {
-    font-size: 32px;
   }
 
   .page--inner h2,

@@ -1,3 +1,15 @@
+// Lenis Smooth Scroll
+const lenis = new Lenis({
+  duration: 1,
+});
+
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
+
 // Screensaver
 function screenSaver() {
   var s_saver;
@@ -40,19 +52,8 @@ function screenSaver() {
   });
 }
 
-// Lenis Smooth Scroll
-function lenisScroll() {
-  const lenis = new Lenis({
-    duration: 1,
-  });
-
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
-
-  requestAnimationFrame(raf);
-
+// Scroll to Top
+function scrollTop() {
   const target = document.querySelector(".site-footer");
   const rect = target.getBoundingClientRect().top;
   const height = window.innerHeight;
@@ -63,24 +64,6 @@ function lenisScroll() {
     lenis.scrollTo("top", {
       duration: speed,
     });
-  });
-}
-
-// Scroll to top
-function scrollTop() {
-  const lenisScroll = new Lenis({
-    duration: 1,
-  });
-
-  function raf(time) {
-    lenisScroll.raf(time);
-    requestAnimationFrame(raf);
-  }
-
-  requestAnimationFrame(raf);
-
-  lenisScroll.scrollTo("top", {
-    duration: 1,
   });
 }
 
@@ -174,10 +157,17 @@ function loaderAnimation() {
     },
   });
 
-  tl.from(logo, {
-    y: "30",
-    opacity: 0,
-  })
+  tl.fromTo(
+    logo,
+    {
+      y: "30",
+      opacity: 0,
+    },
+    {
+      y: "0",
+      opacity: 1,
+    }
+  )
     .to(circle, {
       strokeDashoffset: 0,
       duration: 3.5,
@@ -321,7 +311,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   setTimeout(delayAnimation, 1250);
   filterProject();
-  lenisScroll();
 });
 
 document.addEventListener("lazyloaded", function (e) {
@@ -338,7 +327,9 @@ barba.init({
     {
       name: "page-transition",
       async leave(data) {
-        await scrollTop();
+        await lenis.scrollTo("top", {
+          duration: 0.5,
+        });
         return gsap
           .to(data.current.container, {
             opacity: 0,
@@ -368,7 +359,6 @@ barba.hooks.after((data) => {
   filterProject();
   revealAnimation();
   scrollTop();
-  lenisScroll();
 
   if (window.innerWidth > 769) {
     closeFunction();
