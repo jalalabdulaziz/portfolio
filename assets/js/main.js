@@ -1,6 +1,6 @@
 // Lenis Smooth Scroll
 const lenis = new Lenis({
-  duration: 1,
+  duration: 1.1,
 });
 
 function raf(time) {
