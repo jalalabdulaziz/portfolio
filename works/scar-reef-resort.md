@@ -16,7 +16,7 @@ credit:
   - Photography by Silvio
   - Photography & videography by Erick Regnard
 creative-director:
-status: in-progress
+status:
 featured: featured
 thumbnail-type: image
 tag:
