@@ -242,7 +242,7 @@ function loaderAnimation() {
   )
     .to(circle, {
       strokeDashoffset: 0,
-      duration: 3.5,
+      duration: 2.5,
     })
     .to(
       loader,
@@ -252,7 +252,7 @@ function loaderAnimation() {
           loader.remove();
         },
       },
-      "-=2.5"
+      "-=2"
     );
 }
 
@@ -383,7 +383,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function delayAnimation() {
     revealAnimation();
   }
-  setTimeout(delayAnimation, 1250);
+  setTimeout(delayAnimation, 850);
 
   filterProject();
 });

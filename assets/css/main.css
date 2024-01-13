@@ -80,10 +80,6 @@ picture {
   width: 100%;
 }
 
-.lazyloading {
-  background-image: red;
-}
-
 .separator {
   display: block;
   height: 1px;
@@ -340,12 +336,12 @@ a:hover {
 
 .site-nav--active:before,
 .site-nav__link-item:hover:before {
-  content: "\2022";
+  content: "/";
   font-size: 13px;
   line-height: 26px;
   position: absolute;
   display: inline;
-  color: var(--black);
+  color: var(--gray);
   transform-origin: center;
 }
 
@@ -471,6 +467,7 @@ a:hover {
 
 .project-thumb-container {
   position: relative;
+  overflow: hidden;
 }
 
 .project-thumb__overlay {
