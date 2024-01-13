@@ -1,6 +1,6 @@
 // Lenis Smooth Scroll
 const lenis = new Lenis({
-  duration: 1.1,
+  lerp: 0.15,
 });
 
 function raf(time) {
@@ -14,6 +14,7 @@ requestAnimationFrame(raf);
 function screenSaver() {
   var s_saver;
   const targetSaver = document.querySelector(".screensaver");
+  const popup = document.querySelectorAll(".popup");
 
   document.addEventListener("scroll", function () {
     clearTimeout(s_saver);
@@ -65,6 +66,77 @@ function scrollTop() {
       duration: speed,
     });
   });
+}
+
+// Popup
+const popupClose = () => {
+  const popup = document.querySelector(".popup");
+  const popupContent = document.querySelector(".popup-content");
+  var tl = gsap.timeline({
+    defaults: {
+      ease: "expo.InOut",
+      duration: 0.3,
+      stagger: 0.15,
+    },
+  });
+
+  tl.fromTo(
+    popupContent,
+    {
+      y: "0",
+      opacity: 1,
+    },
+    {
+      y: "30",
+      opacity: 0,
+    }
+  ).to(popup, {
+    opacity: 0,
+    onComplete: function () {
+      popup.remove();
+    },
+  });
+};
+
+function popupVideo() {
+  const popupButton = document.querySelectorAll(".popup-button");
+
+  if (popupButton.length > 0) {
+    popupButton.forEach((button) => {
+      button.addEventListener("click", function () {
+        const videoId = button.getAttribute("href").replace("#", "");
+        const videoLink = `https://fast.wistia.net/embed/iframe/${videoId}?autoPlay=1`;
+
+        document.body.insertAdjacentHTML(
+          "beforeend",
+          `<div class="popup"><div class="popup-container"><div class="popup-content"><div class="popup-scaler"><button onclick="popupClose();" class="popup-close">close</button><iframe width="560" height="315" src="${videoLink}" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" msallowfullscreen width="100%" height="100%"></iframe></div></div></div></div>`
+        );
+
+        const popup = document.querySelectorAll(".popup");
+
+        var tl = gsap.timeline({
+          defaults: {
+            ease: "expo.InOut",
+            duration: 0.3,
+            stagger: 0.15,
+          },
+        });
+
+        tl.fromTo(
+          popup,
+          {
+            display: "none",
+            opacity: 0,
+          },
+          {
+            display: "block",
+            opacity: 1,
+          }
+        );
+      });
+    });
+  } else {
+  }
 }
 
 // Project Filter
@@ -303,13 +375,16 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
   }
 
+  popupVideo();
   scrollTop();
   activeLink();
   loaderAnimation();
+
   function delayAnimation() {
     revealAnimation();
   }
   setTimeout(delayAnimation, 1250);
+
   filterProject();
 });
 
@@ -359,6 +434,7 @@ barba.hooks.after((data) => {
   filterProject();
   revealAnimation();
   scrollTop();
+  popupVideo();
 
   if (window.innerWidth > 769) {
     closeFunction();
