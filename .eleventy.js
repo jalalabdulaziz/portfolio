@@ -1,5 +1,5 @@
-const fg = require('fast-glob');
-const projectImages = fg.sync(['**/img/**/*', '!**/_site/img/**/*']);
+const fg = require("fast-glob");
+const projectImages = fg.sync(["**/img/**/*", "!**/_site/img/**/*"]);
 const { DateTime } = require("luxon");
 module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("assets");
@@ -8,7 +8,7 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addFilter("htmlDateString", (dateObj) => {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("yyyy-LL-dd");
   });
-  eleventyConfig.addCollection('gallery', function (collection) {
+  eleventyConfig.addCollection("gallery", function (collection) {
     return projectImages;
   });
   return {
