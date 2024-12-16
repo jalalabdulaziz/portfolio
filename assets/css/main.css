@@ -10,6 +10,15 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Webfont";
+  src: url("../fonts/SuisseIntl-Medium-WebXL.woff2") format("woff2"),
+    url("../fonts/SuisseIntl-Medium-WebXL.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 /**
  * Reset some basic elements
 */
@@ -43,10 +52,10 @@ figure {
 html {
   --black: #191b1d;
   --gray: #707070;
-  --lightgray: #dadada;
+  --lightgray: #f2f2f2;
   --white: #ffffff;
   --text-color: var(--black);
-  --bg-color: var(--white);
+  --bg-color: ;
   --line-color: var(--gray);
 }
 
@@ -62,8 +71,8 @@ html {
 
 body {
   font-family: "Webfont", "Helvetica Neue", "Helvetica", sans-serif;
-  font-weight: 400;
-  font-size: 13px;
+  font-weight: 500;
+  font-size: 12px;
   line-height: 1.35;
   color: var(--text-color);
   background: var(--bg-color);
@@ -212,7 +221,7 @@ h4,
 h5,
 h6 {
   font-weight: 400;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .site-big-text h1 {
@@ -301,8 +310,8 @@ a:hover {
 }
 
 .site-nav__link--right a {
-  border: 1px solid var(--black);
   border-radius: 2em;
+  background: var(--lightgray);
   padding: 0 1em;
 }
 
@@ -319,7 +328,7 @@ a:hover {
 .site-nav--active:before,
 .site-nav__link-item:hover:before {
   content: "/";
-  font-size: 13px;
+  font-size: 12px;
   line-height: 26px;
   position: absolute;
   display: inline;
@@ -340,7 +349,6 @@ a:hover {
 .toggle-button {
   cursor: pointer;
   display: inline-flex;
-  border: 1px solid var(--black);
   border-radius: 2em;
   padding: 0.5em;
   transition: all ease 0.3s;
@@ -349,7 +357,7 @@ a:hover {
 .top-button {
   cursor: pointer;
   display: inline-flex;
-  border: 1px solid var(--black);
+  background: var(--lightgray);
   border-radius: 2em;
   padding: 0.5em;
   transition: all ease 0.3s;
@@ -360,7 +368,7 @@ a:hover {
 }
 
 .site-nav__link--right .close svg,
-.toggle-button svg {
+.email svg {
   height: 14px;
   stroke-width: 3px;
 }
@@ -384,18 +392,6 @@ a:hover {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-}
-
-.project-list-header-link {
-  font-size: 13px;
-  border: 1px solid var(--black);
-  border-radius: 2em;
-  padding: 0.2em 0.75em;
-}
-
-.project-list-header-link:hover {
-  background: var(--black);
-  color: var(--white);
 }
 
 .is-put-in-corner {
@@ -433,6 +429,8 @@ a:hover {
 
 .project-img {
   margin: 0 auto 20px auto;
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
 /**
@@ -450,6 +448,7 @@ a:hover {
 .project-thumb-container {
   position: relative;
   overflow: hidden;
+  border-radius: 0.5rem;
 }
 
 .project-thumb__overlay {
@@ -472,7 +471,7 @@ a:hover {
   display: block;
   opacity: 0;
   font-weight: normal;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1;
   color: var(--white);
   transition: all 0.3s cubic-bezier(0.215, 0.6, 0.355, 1) 150ms;
@@ -482,7 +481,7 @@ a:hover {
 .project-thumb__project-title {
   position: relative;
   font-weight: 400;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1;
   color: var(--white);
   display: inline-block;
@@ -491,7 +490,7 @@ a:hover {
 .project-thumb__project-subtitle {
   position: relative;
   font-weight: 400;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1;
   color: var(--gray);
   margin-top: 3px;
@@ -556,17 +555,6 @@ a:hover {
 /**
  * Project Filter
  */
-.project-list-header-link.selected {
-  background: var(--black);
-  color: var(--white);
-  transition: all 0.3s ease;
-  pointer-events: none;
-}
-
-.hide {
-  display: none;
-}
-
 .project-list-header-link {
   cursor: pointer;
   transition: all 0.3s ease;
@@ -574,6 +562,29 @@ a:hover {
 
 .project-list-header-link:not(:last-child) {
   margin-right: 2px;
+}
+
+.project-list-header-link.selected {
+  background: var(--black);
+  color: var(--white);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.project-list-header-link {
+  font-size: 12px;
+  border-radius: 2em;
+  background: var(--lightgray);
+  padding: 0.2em 0.75em;
+}
+
+.project-list-header-link:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+.hide {
+  display: none;
 }
 
 /**
@@ -643,7 +654,7 @@ video {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: var(--white);
+  background: var(--lightgray);
   width: 100%;
   height: 100%;
   padding: 50px;
@@ -729,7 +740,7 @@ video {
 .screensaver__location {
   order: 99;
   margin-top: auto;
-  font-size: 13px;
+  font-size: 12px;
   color: var(--black);
 }
 
@@ -789,7 +800,7 @@ video {
   border-radius: 2em;
   border: 1px solid var(--white);
   color: var(--white);
-  font-size: 13px;
+  font-size: 12px;
   padding: 0.2em 0.75em;
   background: transparent;
   cursor: pointer;

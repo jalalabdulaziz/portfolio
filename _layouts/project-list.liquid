@@ -16,32 +16,42 @@ layout: default-alternative.liquid
       <h2 class="animation--fadein">Filter Works</h2>
       <div class="project-filter">
         <label class="project-list-header-link animation--fadein selected">
-          <input class="project-filter-button" type="radio" value="all" />All</label>
+          <input
+            class="project-filter-button"
+            type="radio"
+            value="all" />All</label>
         <label class="project-list-header-link animation--fadein">
-          <input class="project-filter-button" type="radio" value="branding" />Branding</label>
+          <input
+            class="project-filter-button"
+            type="radio"
+            value="branding" />Branding</label>
         <label class="project-list-header-link animation--fadein">
-          <input class="project-filter-button" type="radio" value="creative-direction" />Creative Direction</label>
+          <input
+            class="project-filter-button"
+            type="radio"
+            value="creative-direction" />Creative Direction</label>
         <label class="project-list-header-link animation--fadein">
-          <input class="project-filter-button" type="radio" value="digital" />Digital</label>
+          <input
+            class="project-filter-button"
+            type="radio"
+            value="digital" />Digital</label>
       </div>
     </div>
   </div>
 </div>
 <div class="thumb-item-container project-all-item-container row">
   {% for post in collections.posts %}
-  <div
-    class="project-thumb__item project-all-item {% if post.data.status == 'in-progress' %} in-progress {% endif %} animation--fadein col-xs-12 col-sm-6 col-lg-6"
-    data-scope="{{ post.data.scope | join: ' ' | replace: 'Creative Direction', 'Creative-Direction' | downcase }}">
-    {% if post.data.status != 'in-progress' %}
-    <a class="project-links" href="{{ post.url | url }}">
-      {% include "project-thumbnail.liquid" %}
-    </a>
-    {% elsif post.data.status == 'in-progress' %}
-    <span class="project-links">
-      {% include "project-thumbnail.liquid" %}
-    </span>
-    {% endif %}
-  </div>
+    <div class="project-thumb__item project-all-item {% if post.data.status == 'in-progress' %} in-progress {% endif %} animation--fadein col-xs-12 col-sm-6 col-lg-6" data-scope="{{ post.data.scope | join: ' ' | replace: 'Creative Direction', 'Creative-Direction' | downcase }}">
+      {% if post.data.status != 'in-progress' %}
+        <a class="project-links" href="{{ post.url | url }}">
+          {% include "project-thumbnail.liquid" %}
+        </a>
+      {% elsif post.data.status == 'in-progress' %}
+        <span class="project-links">
+          {% include "project-thumbnail.liquid" %}
+        </span>
+      {% endif %}
+    </div>
   {% endfor %}
   <div class="col-xs-1 col-sm-1 col-lg-1 my-sizer-element"></div>
 </div>
