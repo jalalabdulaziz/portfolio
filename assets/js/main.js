@@ -323,7 +323,7 @@ function headerAnimation() {
   var headroom = new Headroom(header, {
     tolerance: {
       down: 10,
-      up: 20,
+      up: 10,
     },
     offset: 15,
   });

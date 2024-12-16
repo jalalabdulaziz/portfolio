@@ -55,7 +55,7 @@ html {
   --lightgray: #f2f2f2;
   --white: #ffffff;
   --text-color: var(--black);
-  --bg-color: ;
+  --bg-color: var(--white);
   --line-color: var(--gray);
 }
 
@@ -685,6 +685,7 @@ video {
   width: 80px;
   height: 80px;
   stroke: var(--black);
+  stroke-width: 2px;
   fill: transparent;
   position: absolute;
   stroke-dasharray: 1000;
@@ -941,7 +942,7 @@ video {
   }
 
   .page-content {
-    margin-top: 36px;
+    margin-top: 50px;
   }
 
   .separator-first {
