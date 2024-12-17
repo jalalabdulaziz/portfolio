@@ -681,15 +681,25 @@ video {
   background: var(--lightgray);
 }
 
-.loader-circle {
+.loader-circle,
+.loader-circle-static {
   width: 80px;
   height: 80px;
-  stroke: var(--black);
-  stroke-width: 2px;
-  fill: transparent;
+  stroke-width: 1px;
   position: absolute;
+  fill: transparent;
+}
+
+.loader-circle {
+  fill: transparent;
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
+  stroke: var(--black);
+}
+
+.loader-circle-static {
+  stroke: var(--gray);
+  opacity: 0.25;
 }
 
 .loader-logo-container {
