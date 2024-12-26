@@ -368,7 +368,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (window.innerWidth > 769) {
     closeFunction();
-    screenSaver();
+    // screenSaver();
     headerAnimation();
     window.setInterval(function () {
       updateClock();

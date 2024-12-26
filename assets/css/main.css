@@ -329,10 +329,10 @@ a:hover {
 .site-nav__link-item:hover:before {
   content: "/";
   font-size: 12px;
-  line-height: 26px;
+  line-height: 2em;
   position: absolute;
   display: inline;
-  color: var(--lightgray);
+  color: color-mix(in srgb, var(--gray), transparent 75%);
   transform-origin: center;
 }
 
@@ -357,10 +357,6 @@ a:hover {
 .top-button {
   cursor: pointer;
   display: inline-flex;
-  background: var(--lightgray);
-  border-radius: 2em;
-  padding: 0.5em;
-  transition: all ease 0.3s;
 }
 
 .site-nav__link--right .close {
@@ -373,19 +369,6 @@ a:hover {
   stroke-width: 3px;
 }
 
-.top-button svg {
-  height: 14px;
-  stroke-width: 3px;
-}
-
-.top-button:hover {
-  background: var(--black);
-}
-
-.top-button:hover svg {
-  color: var(--white);
-}
-
 .project-list-header {
   align-self: start;
   display: flex;
@@ -394,10 +377,21 @@ a:hover {
   align-items: center;
 }
 
-.is-put-in-corner {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
+/**
+ * Button
+ */
+.button {
+  border-radius: 2em;
+  background: var(--lightgray);
+  padding: 0 1em;
+  line-height: 2em;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: var(--black);
+  color: var(--white);
+  text-decoration: none;
 }
 
 /**
@@ -601,6 +595,7 @@ video {
 
 .video-popup .project-img {
   display: inline-block;
+  position: relative;
 }
 
 .video-popup img {
@@ -615,10 +610,9 @@ video {
 
 .video-play-button {
   top: 50%;
-  left: 0;
-  right: 0;
+  left: 50%;
   position: absolute;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
   color: var(--white);
   padding: 40px;
   text-align: center;
@@ -833,7 +827,6 @@ video {
  * Responsive
  */
 @media (hover: hover) {
-  .site-footer .site-footer__link:hover,
   .page--inner a:hover {
     color: var(--gray);
     transition: all 0.25s ease;
