@@ -16,22 +16,27 @@ function screenSaver() {
   const targetSaver = document.querySelector(".screensaver");
   const popup = document.querySelectorAll(".popup");
 
-  document.addEventListener("scroll", function () {
-    clearTimeout(s_saver);
+  let scrollTimeout;
 
-    s_saver = setTimeout(function () {
+  document.addEventListener("scroll", function () {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(function () {
+      clearTimeout(s_saver);
+
+      s_saver = setTimeout(function () {
+        gsap.to(targetSaver, {
+          opacity: 1,
+          display: "block",
+          duration: 0.2,
+        });
+      }, 40000);
       gsap.to(targetSaver, {
-        opacity: 1,
-        display: "block",
+        opacity: 0,
+        display: "none",
         duration: 0.2,
+        delay: 0.2,
       });
-    }, 40000);
-    gsap.to(targetSaver, {
-      opacity: 0,
-      display: "none",
-      duration: 0.2,
-      delay: 0.2,
-    });
+    }, 100); // Adjust the debounce delay as needed
   });
 
   document.addEventListener("mousemove", function () {
@@ -109,7 +114,7 @@ function popupVideo() {
 
         document.body.insertAdjacentHTML(
           "beforeend",
-          `<div class="popup"><div class="popup-container"><div class="popup-content"><div class="popup-scaler"><button onclick="popupClose();" class="popup-close">close</button><iframe width="560" height="315" src="${videoLink}" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" msallowfullscreen width="100%" height="100%"></iframe></div></div></div></div>`
+          `<div class="popup"><div class="popup-container"><div class="popup-content"><div class="popup-scaler"><button onclick="popupClose();" class="popup-close">Close</button><iframe width="560" height="315" src="${videoLink}" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" msallowfullscreen></iframe></div></div></div></div>`
         );
 
         const popup = document.querySelectorAll(".popup");
