@@ -36,7 +36,7 @@ function screenSaver() {
         duration: 0.2,
         delay: 0.2,
       });
-    }, 100); // Adjust the debounce delay as needed
+    }, 100);
   });
 
   document.addEventListener("mousemove", function () {
