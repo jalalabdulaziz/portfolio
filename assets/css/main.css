@@ -3,9 +3,9 @@
  */
 @font-face {
   font-family: "Webfont";
-  src: url("../fonts/SuisseIntl-Medium-WebXL.woff2") format("woff2"),
-    url("../fonts/SuisseIntl-Medium-WebXL.woff") format("woff");
-  font-weight: 500;
+  src: url("../fonts/SuisseIntl-Book-WebXL.woff2") format("woff2"),
+    url("../fonts/SuisseIntl-Book-WebXL.woff") format("woff");
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
@@ -62,7 +62,7 @@ html {
 
 body {
   font-family: "Webfont", "Helvetica Neue", "Helvetica", sans-serif;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 12px;
   line-height: 1.35;
   color: var(--text-color);
@@ -211,13 +211,13 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 500;
+  font-weight: 400;
   font-size: 12px;
 }
 
 .site-big-text h1 {
   font-size: clamp(32px, 7.5vmin, 72px);
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.15;
   letter-spacing: -0.02em;
 }

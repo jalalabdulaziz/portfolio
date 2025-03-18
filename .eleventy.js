@@ -2,6 +2,7 @@ const fg = require("fast-glob");
 const projectImages = fg.sync(["**/img/**/*", "!**/_site/img/**/*"]);
 const { DateTime } = require("luxon");
 module.exports = (eleventyConfig) => {
+  eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("img");
   eleventyConfig.addPassthroughCopy("robots.txt");

@@ -79,7 +79,7 @@ const popupClose = () => {
   const popupContent = document.querySelector(".popup-content");
   var tl = gsap.timeline({
     defaults: {
-      ease: "expo.InOut",
+      ease: "power2.InOut",
       duration: 0.3,
       stagger: 0.15,
     },
@@ -121,7 +121,7 @@ function popupVideo() {
 
         var tl = gsap.timeline({
           defaults: {
-            ease: "expo.InOut",
+            ease: "power2.InOut",
             duration: 0.3,
             stagger: 0.15,
           },
@@ -228,7 +228,7 @@ function loaderAnimation() {
   const logo = document.querySelector(".loader-logo");
   var tl = gsap.timeline({
     defaults: {
-      ease: "expo.InOut",
+      ease: "power2.InOut",
       duration: 0.5,
       stagger: 0.15,
     },
@@ -269,7 +269,7 @@ function revealAnimation() {
 
   var tl = gsap.timeline({
     defaults: {
-      ease: "expo.InOut",
+      ease: "power2.InOut",
       duration: 0.6,
       stagger: 0.05,
     },
